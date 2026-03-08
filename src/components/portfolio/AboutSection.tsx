@@ -31,8 +31,11 @@ const AboutSection = () => {
           <div className="flex justify-center">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-muted flex items-center justify-center overflow-hidden relative z-10">
-                {/* // TODO: Replace with your photo */}
-                <span className="text-5xl font-display font-bold text-muted-foreground">NS</span>
+                <img
+                  src="/profile.png"
+                  alt="Nishita Saxena"
+                  className="w-full h-full object-cover object-[10%_1%]"
+                />
               </div>
               {/* Animated ring */}
               <div className="absolute inset-0 w-64 h-64 md:w-80 md:h-80 rounded-full m-auto">
