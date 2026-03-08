@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ArrowRight, Clock } from "lucide-react";
 import { blogPosts } from "@/data/blog";
+import { Link } from "react-router-dom";
 
 const BlogSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
