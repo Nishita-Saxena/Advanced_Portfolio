@@ -31,14 +31,23 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <SectionWave />
         <AboutSection />
+        <SectionWave />
         <SkillsSection />
+        <SectionWave />
         <ProjectsSection />
+        <SectionWave />
         <ResearchSection />
+        <SectionWave />
         <EducationSection />
+        <SectionWave />
         <CertificationsSection />
+        <SectionWave />
         <AchievementsSection />
+        <SectionWave />
         <BlogSection />
+        <SectionWave />
         <ContactSection />
       </main>
       <Footer />
