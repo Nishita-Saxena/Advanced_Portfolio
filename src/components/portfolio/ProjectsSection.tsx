@@ -15,7 +15,7 @@ const ProjectsSection = () => {
   const displayed = filtered.slice(0, 6);
 
   return (
-    <section id="projects" className="py-24 relative section-bg-mesh">
+    <section id="projects" className="py-24 relative section-bg-projects">
       <div className="container mx-auto px-4" ref={ref}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

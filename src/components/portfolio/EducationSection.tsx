@@ -6,7 +6,7 @@ const EducationSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="education" className="py-24 relative section-bg-bloom">
+    <section id="education" className="py-24 relative section-bg-education">
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
