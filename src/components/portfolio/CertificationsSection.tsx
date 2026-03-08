@@ -19,7 +19,7 @@ const CertificationsSection = () => {
         </motion.h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {certifications.map((cert, i) => (
+          {certifications.slice(0, 4).map((cert, i) => (
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, y: 30 }}
