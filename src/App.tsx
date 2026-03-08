@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import AllProjects from "./pages/AllProjects";
+import AllResearch from "./pages/AllResearch";
+import AllCertifications from "./pages/AllCertifications";
+import AllAchievements from "./pages/AllAchievements";
+import AllBlog from "./pages/AllBlog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
