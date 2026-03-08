@@ -1,8 +1,9 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { Trophy } from "lucide-react";
+import { Trophy, ArrowRight } from "lucide-react";
 import { achievements, achievementStats } from "@/data/achievements";
+import { Link } from "react-router-dom";
 
 function Counter({ target, inView }: { target: number; inView: boolean }) {
   const count = useMotionValue(0);
