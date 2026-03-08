@@ -1,25 +1,25 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { MapPin, GraduationCap, Brain, Code2 } from "lucide-react";
 
 const AboutSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const badges = [
-    { icon: "📍", label: "India" },
-    { icon: "🎓", label: "2nd Year CS" },
-    { icon: "💡", label: "AI & ML" },
-    { icon: "🐍", label: "Python" },
+    { icon: <MapPin size={14} />, label: "India" },
+    { icon: <GraduationCap size={14} />, label: "2nd Year CS" },
+    { icon: <Brain size={14} />, label: "AI & ML" },
+    { icon: <Code2 size={14} />, label: "Python" },
   ];
 
   const languages = [
-    { name: "Hindi", flag: "🇮🇳", level: 100, label: "Native" },
-    { name: "English", flag: "🇬🇧", level: 90, label: "Fluent" },
+    { name: "Hindi", label: "Native" },
+    { name: "English", label: "Fluent" },
     // TODO: Add more languages
   ];
 
   return (
-    <section id="about" className="py-24 relative">
-      <div className="violet-bloom w-[500px] h-[500px] -right-60 top-0 absolute opacity-20" />
+    <section id="about" className="py-24 relative section-bg-mesh">
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -32,15 +32,15 @@ const AboutSection = () => {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-muted flex items-center justify-center overflow-hidden relative z-10">
                 {/* // TODO: Replace with your photo */}
-                <span className="text-6xl">👩‍💻</span>
+                <span className="text-5xl font-display font-bold text-muted-foreground">NS</span>
               </div>
               {/* Animated ring */}
               <div className="absolute inset-0 w-64 h-64 md:w-80 md:h-80 rounded-full m-auto">
                 <svg className="w-full h-full animate-spin" style={{ animationDuration: "8s" }} viewBox="0 0 200 200">
                   <defs>
                     <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="hsl(255, 90%, 66%)" />
-                      <stop offset="100%" stopColor="hsl(174, 100%, 42%)" />
+                      <stop offset="0%" stopColor="hsl(var(--primary))" />
+                      <stop offset="100%" stopColor="hsl(var(--accent))" />
                     </linearGradient>
                   </defs>
                   <circle cx="100" cy="100" r="96" fill="none" stroke="url(#ring-grad)" strokeWidth="2" strokeDasharray="150 450" strokeLinecap="round" />
@@ -52,7 +52,7 @@ const AboutSection = () => {
           {/* Content */}
           <div>
             <h2 className="section-heading text-3xl md:text-4xl text-foreground mb-6">About Me</h2>
-            <p className="text-muted-foreground font-body leading-relaxed mb-6 mt-8">
+            <p className="text-muted-foreground font-body mt-8 mb-6">
               {/* // TODO: Replace with your real bio */}
               I'm a 2nd-year Computer Science student with a deep passion for Artificial Intelligence, 
               Machine Learning, and Deep Learning. I love building intelligent systems that solve real-world 
@@ -63,31 +63,20 @@ const AboutSection = () => {
             {/* Badges */}
             <div className="flex flex-wrap gap-3 mb-8">
               {badges.map((b) => (
-                <span key={b.label} className="glass-card px-4 py-2 rounded-full text-sm font-body text-foreground flex items-center gap-2">
-                  <span>{b.icon}</span> {b.label}
+                <span key={b.label} className="border border-border px-4 py-2 text-sm font-body text-foreground flex items-center gap-2">
+                  <span className="text-primary">{b.icon}</span> {b.label}
                 </span>
               ))}
             </div>
 
             {/* Languages */}
             <div>
-              <h3 className="font-display font-semibold text-foreground mb-3 text-lg">Languages I Speak</h3>
-              <div className="space-y-3">
+              <h3 className="mono-label text-primary mb-3">Languages I Speak</h3>
+              <div className="space-y-2">
                 {languages.map((lang) => (
-                  <div key={lang.name}>
-                    <div className="flex justify-between text-sm font-body mb-1">
-                      <span className="text-foreground">{lang.flag} {lang.name}</span>
-                      <span className="text-muted-foreground">{lang.label}</span>
-                    </div>
-                    <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={inView ? { width: `${lang.level}%` } : {}}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="h-full rounded-full"
-                        style={{ background: "linear-gradient(90deg, hsl(255, 90%, 66%), hsl(174, 100%, 42%))" }}
-                      />
-                    </div>
+                  <div key={lang.name} className="flex items-center gap-3 text-sm font-body">
+                    <span className="text-foreground">{lang.name}</span>
+                    <span className="text-muted-foreground">— {lang.label}</span>
                   </div>
                 ))}
               </div>

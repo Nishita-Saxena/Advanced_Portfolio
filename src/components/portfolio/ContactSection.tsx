@@ -25,9 +25,8 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="violet-bloom w-[600px] h-[600px] -right-40 bottom-0 absolute opacity-15" />
-      <div className="container mx-auto px-4" ref={ref}>
+    <section id="contact" className="py-24 relative section-bg-bloom">
+      <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left */}
           <motion.div
@@ -37,17 +36,17 @@ const ContactSection = () => {
             <h2 className="section-heading text-3xl md:text-4xl text-foreground mb-6">
               Let's Build Something Together
             </h2>
-            <p className="text-muted-foreground font-body mt-10 mb-8 leading-relaxed">
+            <p className="text-muted-foreground font-body mt-8 mb-8">
               Whether it's a collaboration, internship, research opportunity, or just a hello — my inbox is open.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               {socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card p-3 rounded-xl flex items-center gap-2 text-muted-foreground hover:text-primary hover:scale-105 transition-all"
+                  className="border border-border p-3 flex items-center gap-2 text-muted-foreground hover:text-primary hover:border-primary transition-all"
                   aria-label={s.label}
                 >
                   {s.icon}
@@ -63,34 +62,34 @@ const ContactSection = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2 }}
             onSubmit={handleSubmit}
-            className="glass-card p-6 md:p-8 rounded-xl space-y-4"
+            className="bg-card border border-border p-6 md:p-8 space-y-4"
           >
             <div>
-              <label className="mono-label text-muted-foreground text-xs block mb-1">Name</label>
+              <label className="mono-label text-muted-foreground text-[10px] block mb-1">Name</label>
               <input
                 type="text"
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full bg-muted rounded-lg px-4 py-3 text-foreground font-body text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border"
+                className="w-full bg-background px-4 py-3 text-foreground font-body text-sm outline-none border border-border focus:border-primary transition-colors"
               />
             </div>
             <div>
-              <label className="mono-label text-muted-foreground text-xs block mb-1">Email</label>
+              <label className="mono-label text-muted-foreground text-[10px] block mb-1">Email</label>
               <input
                 type="email"
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full bg-muted rounded-lg px-4 py-3 text-foreground font-body text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border"
+                className="w-full bg-background px-4 py-3 text-foreground font-body text-sm outline-none border border-border focus:border-primary transition-colors"
               />
             </div>
             <div>
-              <label className="mono-label text-muted-foreground text-xs block mb-1">Subject</label>
+              <label className="mono-label text-muted-foreground text-[10px] block mb-1">Subject</label>
               <select
                 value={form.subject}
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                className="w-full bg-muted rounded-lg px-4 py-3 text-foreground font-body text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border"
+                className="w-full bg-background px-4 py-3 text-foreground font-body text-sm outline-none border border-border focus:border-primary transition-colors"
               >
                 <option>Collaboration</option>
                 <option>Internship</option>
@@ -100,23 +99,23 @@ const ContactSection = () => {
               </select>
             </div>
             <div>
-              <label className="mono-label text-muted-foreground text-xs block mb-1">Message</label>
+              <label className="mono-label text-muted-foreground text-[10px] block mb-1">Message</label>
               <textarea
                 required
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-muted rounded-lg px-4 py-3 text-foreground font-body text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border resize-none"
+                className="w-full bg-background px-4 py-3 text-foreground font-body text-sm outline-none border border-border focus:border-primary transition-colors resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full gradient-btn py-3 rounded-lg font-body font-semibold flex items-center justify-center gap-2 group"
+              className="w-full gradient-btn py-3 font-body font-semibold flex items-center justify-center gap-2 group"
             >
               {submitted ? (
                 <>
-                  <Check size={18} /> Message Sent! 💫
+                  <Check size={18} /> Message Sent!
                 </>
               ) : (
                 <>
