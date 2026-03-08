@@ -21,6 +21,8 @@ const EducationSection = () => {
           <div
             className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0 border-l-2 border-dashed border-primary/40"
           />
+          {/* Traveling glow dot */}
+          <div className="timeline-glow" />
 
           {education.map((edu, i) => (
             <motion.div
