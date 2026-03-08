@@ -19,7 +19,7 @@ const BlogSection = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
-          {blogPosts.map((post, i) => (
+          {blogPosts.slice(0, 3).map((post, i) => (
             <motion.a
               key={post.id}
               href={post.externalUrl || "#"}
