@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Award } from "lucide-react";
+import { Award, ArrowRight } from "lucide-react";
 import { certifications } from "@/data/certifications";
+import { Link } from "react-router-dom";
 
 const CertificationsSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -18,7 +19,7 @@ const CertificationsSection = () => {
         </motion.h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {certifications.map((cert, i) => (
+          {certifications.slice(0, 4).map((cert, i) => (
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, y: 30 }}
@@ -55,6 +56,16 @@ const CertificationsSection = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/certifications"
+            className="inline-flex items-center gap-2 border border-primary text-primary px-8 py-3 font-body font-semibold hover:bg-primary hover:text-primary-foreground transition-all group text-lg w-full sm:w-auto justify-center"
+          >
+            View All Certifications
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

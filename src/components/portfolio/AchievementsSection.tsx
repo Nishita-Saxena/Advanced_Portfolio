@@ -1,8 +1,9 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { Trophy } from "lucide-react";
+import { Trophy, ArrowRight } from "lucide-react";
 import { achievements, achievementStats } from "@/data/achievements";
+import { Link } from "react-router-dom";
 
 function Counter({ target, inView }: { target: number; inView: boolean }) {
   const count = useMotionValue(0);
@@ -49,7 +50,7 @@ const AchievementsSection = () => {
 
         {/* Cards — metallic plaque style */}
         <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible">
-          {achievements.map((a, i) => (
+          {achievements.slice(0, 4).map((a, i) => (
             <motion.div
               key={a.id}
               initial={{ opacity: 0, y: 30 }}
@@ -66,6 +67,16 @@ const AchievementsSection = () => {
               <p className="text-sm text-muted-foreground font-body">{a.description}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/achievements"
+            className="inline-flex items-center gap-2 border border-primary text-primary px-8 py-3 font-body font-semibold hover:bg-primary hover:text-primary-foreground transition-all group text-lg w-full sm:w-auto justify-center"
+          >
+            View All Achievements
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

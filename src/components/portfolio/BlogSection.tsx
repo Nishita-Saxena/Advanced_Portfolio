@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ArrowRight, Clock } from "lucide-react";
 import { blogPosts } from "@/data/blog";
+import { Link } from "react-router-dom";
 
 const BlogSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -18,7 +19,7 @@ const BlogSection = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
-          {blogPosts.map((post, i) => (
+          {blogPosts.slice(0, 3).map((post, i) => (
             <motion.a
               key={post.id}
               href={post.externalUrl || "#"}
@@ -51,6 +52,16 @@ const BlogSection = () => {
               </div>
             </motion.a>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 border border-primary text-primary px-8 py-3 font-body font-semibold hover:bg-primary hover:text-primary-foreground transition-all group text-lg w-full sm:w-auto justify-center"
+          >
+            View All Posts
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import { research } from "@/data/research";
-
+import { Link } from "react-router-dom";
 const ResearchSection = () => {
   const [expanded, setExpanded] = useState<string | null>(null);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -20,7 +20,7 @@ const ResearchSection = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
-          {research.map((r, i) => (
+          {research.slice(0, 4).map((r, i) => (
             <motion.div
               key={r.id}
               initial={{ opacity: 0, y: 30 }}
@@ -77,6 +77,16 @@ const ResearchSection = () => {
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/research"
+            className="inline-flex items-center gap-2 border border-primary text-primary px-8 py-3 font-body font-semibold hover:bg-primary hover:text-primary-foreground transition-all group text-lg w-full sm:w-auto justify-center"
+          >
+            View All Research
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>
