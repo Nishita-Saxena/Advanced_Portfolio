@@ -49,11 +49,6 @@ const AllProjects = () => {
                   transition={{ delay: i * 0.05 }}
                   className="bg-card border-l-[3px] border-l-primary border border-border card-hover shimmer-hover overflow-hidden flex flex-col relative"
                 >
-                  <div className="absolute top-0 right-0 z-10">
-                    <div className="bg-primary text-primary-foreground mono-label text-[9px] px-4 py-1 transform translate-x-[20%] translate-y-[40%] rotate-45 origin-top-left">
-                      {project.category}
-                    </div>
-                  </div>
 
                   <div className="h-40 relative bg-muted/30">
                     <div className="absolute inset-0 flex items-center justify-center">
