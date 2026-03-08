@@ -19,7 +19,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 relative section-bg-mesh">
+    <section id="about" className="py-24 relative section-bg-about">
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}

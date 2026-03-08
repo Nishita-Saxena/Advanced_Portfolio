@@ -25,7 +25,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 relative section-bg-bloom">
+    <section id="contact" className="py-24 relative section-bg-contact">
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left */}

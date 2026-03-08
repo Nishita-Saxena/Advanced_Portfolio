@@ -7,7 +7,7 @@ const CertificationsSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="certifications" className="py-24 relative section-bg-mesh">
+    <section id="certifications" className="py-24 relative section-bg-certifications">
       <div className="container mx-auto px-4" ref={ref}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
