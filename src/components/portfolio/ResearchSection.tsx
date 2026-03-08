@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import { research } from "@/data/research";
-
+import { Link } from "react-router-dom";
 const ResearchSection = () => {
   const [expanded, setExpanded] = useState<string | null>(null);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
