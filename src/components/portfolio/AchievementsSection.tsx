@@ -50,7 +50,7 @@ const AchievementsSection = () => {
 
         {/* Cards — metallic plaque style */}
         <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible">
-          {achievements.map((a, i) => (
+          {achievements.slice(0, 4).map((a, i) => (
             <motion.div
               key={a.id}
               initial={{ opacity: 0, y: 30 }}
