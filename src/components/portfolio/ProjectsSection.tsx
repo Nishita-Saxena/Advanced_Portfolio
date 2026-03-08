@@ -1,12 +1,18 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Link } from "react-router-dom";
 
+const filters = ["All", "Full Stack", "AI/ML", "Experiment"] as const;
+
 const ProjectsSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const displayed = projects.slice(0, 6);
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+
+  const filtered = activeFilter === "All" ? projects : projects.filter((p) => p.category === activeFilter);
+  const displayed = filtered.slice(0, 6);
 
   return (
     <section id="projects" className="py-24 relative section-bg-mesh">
@@ -14,10 +20,27 @@ const ProjectsSection = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="section-heading text-3xl md:text-4xl text-foreground mb-16"
+          className="section-heading text-3xl md:text-4xl text-foreground mb-12"
         >
           Projects
         </motion.h2>
+
+        {/* Filter Bar */}
+        <div className="flex flex-wrap gap-3 mb-10 justify-center">
+          {filters.map((f) => (
+            <button
+              key={f}
+              onClick={() => setActiveFilter(f)}
+              className={`px-5 py-2 text-sm font-body transition-all duration-300 border ${
+                activeFilter === f
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
 
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -32,13 +55,6 @@ const ProjectsSection = () => {
                 transition={{ delay: i * 0.05 }}
                 className="bg-card border-l-[3px] border-l-primary border border-border card-hover shimmer-hover overflow-hidden flex flex-col relative"
               >
-                {/* Diagonal category ribbon */}
-                <div className="absolute top-0 right-0 z-10">
-                  <div className="bg-primary text-primary-foreground mono-label text-[9px] px-4 py-1 transform translate-x-[20%] translate-y-[40%] rotate-45 origin-top-left">
-                    {project.category}
-                  </div>
-                </div>
-
                 {/* Thumbnail */}
                 <div className="h-40 relative bg-muted/30">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -50,14 +66,12 @@ const ProjectsSection = () => {
                   <h3 className="font-display font-bold text-xl text-foreground mb-2">{project.title}</h3>
                   <p className="text-sm text-muted-foreground font-body mb-4 line-clamp-2 flex-1">{project.description}</p>
 
-                  {/* Tech tags — outlined, no fill */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.techStack.slice(0, 4).map((t) => (
                       <span key={t} className="mono-label px-2 py-0.5 border border-border text-muted-foreground text-[10px]">{t}</span>
                     ))}
                   </div>
 
-                  {/* Actions */}
                   <div className="flex items-center gap-3 mt-auto">
                     {project.demoUrl && (
                       <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Live Demo">
