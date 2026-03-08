@@ -284,26 +284,6 @@
   100% { opacity: 0.7; transform: scale(1.15); }
 }
 
-@keyframes shimmer-sweep {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(50%); }
-}
-
-@keyframes vignette-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes starburst-rotate {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes contact-mesh {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 @keyframes timeline-travel {
   0% { top: 0%; opacity: 0; }
   10% { opacity: 1; }
@@ -311,29 +291,16 @@
   100% { top: 100%; opacity: 0; }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .section-bg-about::before,
-  .section-bg-skills::before,
-  .section-bg-projects::before,
-  .section-bg-research::before,
-  .section-bg-achievements::before,
-  .section-bg-blog::before,
-  .section-bg-blog::after,
-  .section-bg-contact::before,
-  .timeline-glow {
-    animation: none !important;
-  }
-}
-
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
 
-@keyframes bloom-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-glow {
+    animation: none !important;
+  }
 }
 
 @keyframes typewriter-cursor {
