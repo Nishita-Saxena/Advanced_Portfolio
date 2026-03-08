@@ -210,289 +210,50 @@
   }
 
   /* ═══════════════════════════════════════════
-     SECTION WAVE DIVIDER
+     SECTION DIVIDER — clean horizontal rule
      ═══════════════════════════════════════════ */
-  .section-wave {
-    width: 100%;
-    height: 40px;
-    overflow: hidden;
-    line-height: 0;
-    position: relative;
-    z-index: 2;
+  .section-divider {
+    width: 80%;
+    max-width: 80%;
+    margin: 0 auto;
+    border: none;
+    height: 1px;
+    background: rgba(200, 169, 110, 0.20);
   }
-  .section-wave svg {
-    display: block;
-    width: 100%;
-    height: 40px;
-  }
-  .section-wave path {
-    fill: none;
-    stroke: rgba(200, 169, 110, 0.15);
-    stroke-width: 1.5;
-  }
-  .dark .section-wave path {
-    stroke: rgba(200, 169, 110, 0.15);
-  }
-  :root .section-wave path {
-    stroke: rgba(181, 69, 27, 0.12);
+  :root .section-divider {
+    background: rgba(181, 69, 27, 0.15);
   }
 
   /* ═══════════════════════════════════════════
-     ABOUT — dot grid + gold bloom bottom-right
+     UNIFIED DOT GRID — all sections except Skills
      ═══════════════════════════════════════════ */
-  .section-bg-about {
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(200,169,110,0.08)'/%3E%3C/svg%3E");
-    background-size: 20px 20px;
-  }
-  :root .section-bg-about {
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(181,69,27,0.12)'/%3E%3C/svg%3E");
-  }
-  .section-bg-about::before {
-    content: '';
-    position: absolute;
-    bottom: -10%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 169, 110, 0.07) 0%, transparent 70%);
-    animation: about-bloom 10s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform, opacity;
-  }
-  :root .section-bg-about::before {
-    background: radial-gradient(circle, rgba(181, 69, 27, 0.08) 0%, transparent 70%);
-  }
-
-  /* ═══════════════════════════════════════════
-     SKILLS — diagonal lines + gold shimmer sweep
-     ═══════════════════════════════════════════ */
-  .section-bg-skills {
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='rgba(200,169,110,0.06)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-    background-size: 40px 40px;
-  }
-  :root .section-bg-skills {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='rgba(181,69,27,0.10)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-  }
-  .section-bg-skills::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(200, 169, 110, 0.04) 25%, transparent 50%);
-    animation: shimmer-sweep 20s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-  }
-  :root .section-bg-skills::before {
-    background: linear-gradient(90deg, transparent 0%, rgba(181, 69, 27, 0.06) 25%, transparent 50%);
-  }
-
-  /* ═══════════════════════════════════════════
-     PROJECTS — hex mesh + green glow left
-     ═══════════════════════════════════════════ */
-  .section-bg-projects {
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg width='56' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(200,169,110,0.05)' stroke-width='1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(200,169,110,0.05)' stroke-width='1'/%3E%3C/svg%3E");
-    background-size: 56px 100px;
-  }
-  :root .section-bg-projects {
-    background-image: url("data:image/svg+xml,%3Csvg width='56' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(181,69,27,0.08)' stroke-width='1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='rgba(181,69,27,0.08)' stroke-width='1'/%3E%3C/svg%3E");
-  }
-  .section-bg-projects::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: -5%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(127, 255, 0, 0.04) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    will-change: opacity;
-    animation: bloom-pulse 8s ease-in-out infinite;
-  }
-  :root .section-bg-projects::before {
-    background: radial-gradient(circle, rgba(181, 69, 27, 0.06) 0%, transparent 70%);
-  }
-
-  /* ═══════════════════════════════════════════
-     RESEARCH — cross-hatch grid + pulsing vignette
-     ═══════════════════════════════════════════ */
-  .section-bg-research {
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L40 40M40 0L0 40' stroke='rgba(200,169,110,0.05)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
-    background-size: 40px 40px;
-  }
-  :root .section-bg-research {
-    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L40 40M40 0L0 40' stroke='rgba(181,69,27,0.10)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
-  }
-  .section-bg-research::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.15) 100%);
-    animation: vignette-pulse 6s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-    will-change: opacity;
-  }
-  :root .section-bg-research::before {
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(181, 69, 27, 0.04) 100%);
-  }
-
-  /* ═══════════════════════════════════════════
-     EDUCATION — faint vertical stripes + timeline glow
-     ═══════════════════════════════════════════ */
-  .section-bg-education {
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L10 20' stroke='rgba(200,169,110,0.03)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-    background-size: 20px 20px;
-  }
-  :root .section-bg-education {
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L10 20' stroke='rgba(181,69,27,0.08)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
-  }
-
-  /* ═══════════════════════════════════════════
-     CERTIFICATIONS — circuit board + right glow
-     ═══════════════════════════════════════════ */
-  .section-bg-certifications {
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0V15H45V30H60' stroke='rgba(200,169,110,0.04)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 30H15V45H30V60' stroke='rgba(200,169,110,0.04)' stroke-width='1' fill='none'/%3E%3Ccircle cx='30' cy='15' r='2' fill='rgba(200,169,110,0.06)'/%3E%3Ccircle cx='15' cy='45' r='2' fill='rgba(200,169,110,0.06)'/%3E%3C/svg%3E");
-    background-size: 60px 60px;
-  }
-  :root .section-bg-certifications {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0V15H45V30H60' stroke='rgba(181,69,27,0.08)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 30H15V45H30V60' stroke='rgba(181,69,27,0.08)' stroke-width='1' fill='none'/%3E%3Ccircle cx='30' cy='15' r='2' fill='rgba(181,69,27,0.10)'/%3E%3Ccircle cx='15' cy='45' r='2' fill='rgba(181,69,27,0.10)'/%3E%3C/svg%3E");
-  }
-  .section-bg-certifications::before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    right: -5%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 169, 110, 0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    will-change: opacity;
-  }
-  :root .section-bg-certifications::before {
-    background: radial-gradient(circle, rgba(181, 69, 27, 0.08) 0%, transparent 70%);
-  }
-
-  /* ═══════════════════════════════════════════
-     ACHIEVEMENTS — starburst + slow rotation
-     ═══════════════════════════════════════════ */
-  .section-bg-achievements {
-    position: relative;
-    overflow: hidden;
-  }
-  .section-bg-achievements::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;
-    height: 120%;
-    transform: translate(-50%, -50%);
-    background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.05'%3E%3Cline x1='200' y1='0' x2='200' y2='400' stroke='%23C8A96E' stroke-width='1'/%3E%3Cline x1='0' y1='200' x2='400' y2='200' stroke='%23C8A96E' stroke-width='1'/%3E%3Cline x1='0' y1='0' x2='400' y2='400' stroke='%23C8A96E' stroke-width='0.5'/%3E%3Cline x1='400' y1='0' x2='0' y2='400' stroke='%23C8A96E' stroke-width='0.5'/%3E%3Cline x1='200' y1='0' x2='400' y2='200' stroke='%23C8A96E' stroke-width='0.5'/%3E%3Cline x1='200' y1='0' x2='0' y2='200' stroke='%23C8A96E' stroke-width='0.5'/%3E%3Cline x1='200' y1='400' x2='400' y2='200' stroke='%23C8A96E' stroke-width='0.5'/%3E%3Cline x1='200' y1='400' x2='0' y2='200' stroke='%23C8A96E' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    animation: starburst-rotate 60s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-  }
-
-  /* ═══════════════════════════════════════════
-     BLOG — dual ink-bleed blobs
-     ═══════════════════════════════════════════ */
-  .section-bg-blog {
-    position: relative;
-  }
-  .section-bg-blog::before,
-  .section-bg-blog::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    will-change: opacity;
-  }
-  .section-bg-blog::before {
-    top: -10%;
-    left: -5%;
-    background: radial-gradient(circle, rgba(200, 169, 110, 0.05) 0%, transparent 70%);
-    animation: about-bloom 12s ease-in-out infinite alternate;
-  }
-  .section-bg-blog::after {
-    bottom: -10%;
-    right: -5%;
-    background: radial-gradient(circle, rgba(200, 169, 110, 0.05) 0%, transparent 70%);
-    animation: about-bloom 12s ease-in-out 6s infinite alternate;
-  }
-  :root .section-bg-blog::before {
-    background: radial-gradient(circle, rgba(181, 69, 27, 0.08) 0%, transparent 70%);
-  }
-  :root .section-bg-blog::after {
-    background: radial-gradient(circle, rgba(181, 69, 27, 0.08) 0%, transparent 70%);
-  }
-
-  /* ═══════════════════════════════════════════
-     CONTACT — animated mesh gradient finale
-     ═══════════════════════════════════════════ */
+  .section-bg-about,
+  .section-bg-projects,
+  .section-bg-research,
+  .section-bg-education,
+  .section-bg-certifications,
+  .section-bg-achievements,
+  .section-bg-blog,
   .section-bg-contact {
-    position: relative;
-    overflow: hidden;
+    background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='14' r='0.5' fill='rgba(200,169,110,0.12)'/%3E%3C/svg%3E");
+    background-size: 28px 28px;
   }
-  .section-bg-contact::before {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    background: conic-gradient(
-      from 0deg at 50% 50%,
-      rgba(200, 169, 110, 0.06) 0deg,
-      rgba(127, 255, 0, 0.03) 90deg,
-      rgba(200, 169, 110, 0.06) 180deg,
-      rgba(127, 255, 0, 0.03) 270deg,
-      rgba(200, 169, 110, 0.06) 360deg
-    );
-    animation: contact-mesh 15s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-  }
-  :root .section-bg-contact::before {
-    background: conic-gradient(
-      from 0deg at 50% 50%,
-      rgba(181, 69, 27, 0.06) 0deg,
-      rgba(26, 26, 46, 0.04) 90deg,
-      rgba(181, 69, 27, 0.06) 180deg,
-      rgba(26, 26, 46, 0.04) 270deg,
-      rgba(181, 69, 27, 0.06) 360deg
-    );
-  }
-  .section-bg-contact::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 30%, hsl(var(--background) / 0.8) 100%);
-    pointer-events: none;
-    z-index: 0;
+  :root .section-bg-about,
+  :root .section-bg-projects,
+  :root .section-bg-research,
+  :root .section-bg-education,
+  :root .section-bg-certifications,
+  :root .section-bg-achievements,
+  :root .section-bg-blog,
+  :root .section-bg-contact {
+    background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='14' cy='14' r='0.5' fill='rgba(181,69,27,0.10)'/%3E%3C/svg%3E");
   }
 
-  /* Timeline traveling glow */
+  .section-bg-skills {
+    /* intentionally clean */
+  }
+
+  /* Timeline traveling glow — KEPT */
   .timeline-glow {
     position: absolute;
     left: 50%;
@@ -513,7 +274,6 @@
       left: 24px;
     }
   }
-}
 
 /* ═══════════════════════════════════════════
    KEYFRAME ANIMATIONS
@@ -524,26 +284,6 @@
   100% { opacity: 0.7; transform: scale(1.15); }
 }
 
-@keyframes shimmer-sweep {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(50%); }
-}
-
-@keyframes vignette-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes starburst-rotate {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes contact-mesh {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 @keyframes timeline-travel {
   0% { top: 0%; opacity: 0; }
   10% { opacity: 1; }
@@ -551,29 +291,16 @@
   100% { top: 100%; opacity: 0; }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .section-bg-about::before,
-  .section-bg-skills::before,
-  .section-bg-projects::before,
-  .section-bg-research::before,
-  .section-bg-achievements::before,
-  .section-bg-blog::before,
-  .section-bg-blog::after,
-  .section-bg-contact::before,
-  .timeline-glow {
-    animation: none !important;
-  }
-}
-
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
 
-@keyframes bloom-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-glow {
+    animation: none !important;
+  }
 }
 
 @keyframes typewriter-cursor {
