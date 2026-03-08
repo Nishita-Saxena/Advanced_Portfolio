@@ -53,6 +53,16 @@ const BlogSection = () => {
             </motion.a>
           ))}
         </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 border border-primary text-primary px-8 py-3 font-body font-semibold hover:bg-primary hover:text-primary-foreground transition-all group text-lg w-full sm:w-auto justify-center"
+          >
+            View All Posts
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </section>
   );
