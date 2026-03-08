@@ -13,6 +13,14 @@ import ContactSection from "@/components/portfolio/ContactSection";
 import Footer from "@/components/portfolio/Footer";
 import ScrollProgress from "@/components/portfolio/ScrollProgress";
 
+const SectionWave = () => (
+  <div className="section-wave">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
+      <path d="M0,20 Q150,0 300,20 T600,20 T900,20 T1200,20" />
+    </svg>
+  </div>
+);
+
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
