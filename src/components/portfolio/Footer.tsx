@@ -40,7 +40,7 @@ const Footer = () => {
             ))}
           </div>
           <p className="text-xs text-muted-foreground font-body">
-            © {new Date().getFullYear()} Nishita Saxena. Crafted with passion & code.
+            &copy; {new Date().getFullYear()} Nishita Saxena. Crafted with passion & code.
           </p>
         </div>
       </footer>
@@ -53,7 +53,7 @@ const Footer = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-6 right-6 z-50 gradient-btn w-12 h-12 rounded-full flex items-center justify-center"
+            className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground w-12 h-12 flex items-center justify-center hover:scale-110 transition-transform"
             aria-label="Back to top"
           >
             <ArrowUp size={20} />

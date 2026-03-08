@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 
@@ -13,6 +13,8 @@ const HeroSection = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: -9999, y: -9999 });
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
@@ -32,26 +34,130 @@ const HeroSection = () => {
     return () => clearTimeout(timeout);
   }, [displayedText, isDeleting, titleIndex]);
 
+  // Neural network canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    const isMobile = window.innerWidth < 768;
+    const nodeCount = isMobile ? 40 : 80;
+
+    interface Node { x: number; y: number; vx: number; vy: number; z: number; }
+    const nodes: Node[] = [];
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * (window.devicePixelRatio || 1);
+      canvas.height = canvas.offsetHeight * (window.devicePixelRatio || 1);
+      ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+    };
+    resize();
+
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * canvas.offsetWidth,
+        y: Math.random() * canvas.offsetHeight,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        z: Math.random() * 0.5 + 0.5,
+      });
+    }
+
+    const isDark = () => document.documentElement.classList.contains("dark");
+
+    const draw = () => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      const dark = isDark();
+      const dotColor = dark ? "200, 169, 110" : "181, 69, 27";
+      const lineColor = dark ? "200, 169, 110" : "181, 69, 27";
+      const dotOpacity = dark ? 0.5 : 0.3;
+
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
+
+      for (const n of nodes) {
+        // Mouse repulsion
+        const dx = n.x - mx;
+        const dy = n.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200 && dist > 0) {
+          const force = (200 - dist) / 200 * 0.8;
+          n.vx += (dx / dist) * force;
+          n.vy += (dy / dist) * force;
+        }
+
+        n.vx *= 0.98;
+        n.vy *= 0.98;
+        n.x += n.vx * n.z;
+        n.y += n.vy * n.z;
+
+        if (n.x < 0) n.x = w;
+        if (n.x > w) n.x = 0;
+        if (n.y < 0) n.y = h;
+        if (n.y > h) n.y = 0;
+      }
+
+      // Lines
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 150) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(${lineColor}, ${(1 - d / 150) * 0.12})`;
+            ctx.lineWidth = 0.3;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Dots
+      for (const n of nodes) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.5 * n.z, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${dotColor}, ${dotOpacity * n.z})`;
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    const handleMouse = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+    const handleLeave = () => { mouseRef.current = { x: -9999, y: -9999 }; };
+
+    canvas.addEventListener("mousemove", handleMouse);
+    canvas.addEventListener("mouseleave", handleLeave);
+    window.addEventListener("resize", resize);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      canvas.removeEventListener("mousemove", handleMouse);
+      canvas.removeEventListener("mouseleave", handleLeave);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
   const nameLetters = "Nishita Saxena".split("");
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="violet-bloom w-[600px] h-[600px] -top-40 -right-40 absolute opacity-50" />
-      <div className="violet-bloom w-[400px] h-[400px] bottom-20 -left-20 absolute opacity-30" />
-
-      {/* Floating shapes */}
-      <motion.div
-        className="absolute top-1/4 right-1/4 w-16 h-16 rounded-full border border-primary/20 animate-float"
-        style={{ animationDelay: "0s" }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 left-1/5 w-10 h-10 rotate-45 border border-secondary/20 animate-float-slow"
-        style={{ animationDelay: "2s" }}
-      />
-      <motion.div
-        className="absolute top-1/3 left-1/4 w-6 h-6 rounded-full bg-primary/10 animate-float"
-        style={{ animationDelay: "1s" }}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ pointerEvents: "auto" }}
       />
 
       <div className="container mx-auto px-4 text-center relative z-10">
@@ -60,7 +166,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-8"
+          className="inline-flex items-center gap-2 border border-border px-4 py-2 mb-8"
         >
           <span className="glow-dot" />
           <span className="mono-label text-muted-foreground">Available for Internships & Roles</span>
@@ -118,14 +224,14 @@ const HeroSection = () => {
         >
           <a
             href="#projects"
-            className="gradient-btn px-8 py-3 rounded-full font-body font-semibold flex items-center gap-2 group"
+            className="gradient-btn px-8 py-3 font-body font-semibold flex items-center gap-2 group"
           >
             View My Work
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="#"
-            className="glass-btn px-8 py-3 rounded-full font-body font-semibold flex items-center gap-2"
+            className="glass-btn px-8 py-3 font-body font-semibold flex items-center gap-2"
           >
             <Download size={18} />
             Download Resume
@@ -143,7 +249,7 @@ const HeroSection = () => {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-1"
+          className="w-6 h-10 border-2 border-muted-foreground/30 flex items-start justify-center p-1"
         >
           <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
         </motion.div>

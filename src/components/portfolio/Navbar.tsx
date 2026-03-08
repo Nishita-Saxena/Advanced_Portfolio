@@ -54,7 +54,7 @@ const Navbar = () => {
                 className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-full group-hover:left-0" />
+                <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0" />
               </a>
             ))}
           </div>
@@ -62,17 +62,17 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full glass-card hover:scale-110 transition-transform"
+              className="p-2 border border-border hover:border-primary hover:scale-110 transition-all"
               aria-label="Toggle theme"
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
-                  <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                    <Sun size={18} className="text-foreground" />
+                  <motion.div key="moon" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
+                    <Moon size={18} className="text-primary" />
                   </motion.div>
                 ) : (
-                  <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                    <Moon size={18} className="text-foreground" />
+                  <motion.div key="sun" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
+                    <Sun size={18} className="text-primary" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -80,7 +80,7 @@ const Navbar = () => {
 
             <a
               href="#"
-              className="hidden md:flex items-center gap-2 glass-btn px-4 py-2 rounded-full text-sm font-body"
+              className="hidden md:flex items-center gap-2 border border-primary text-primary px-4 py-2 text-sm font-body hover:bg-primary hover:text-primary-foreground transition-all"
             >
               <FileText size={14} />
               Resume
