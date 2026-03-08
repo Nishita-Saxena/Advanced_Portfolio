@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Award } from "lucide-react";
+import { Award, ArrowRight } from "lucide-react";
 import { certifications } from "@/data/certifications";
+import { Link } from "react-router-dom";
 
 const CertificationsSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
