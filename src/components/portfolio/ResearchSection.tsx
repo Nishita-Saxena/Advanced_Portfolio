@@ -20,7 +20,7 @@ const ResearchSection = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8">
-          {research.map((r, i) => (
+          {research.slice(0, 4).map((r, i) => (
             <motion.div
               key={r.id}
               initial={{ opacity: 0, y: 30 }}
